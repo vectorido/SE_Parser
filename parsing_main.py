@@ -2,7 +2,7 @@ import os
 import shutil
 
 
-def parse_files(folder_path, destination_folder):
+def parse_files(folder_path, destination_root):
     nc_files = []
     mpf_files = []
     other_files = []
@@ -20,6 +20,7 @@ def parse_files(folder_path, destination_folder):
             elif file_extension == '':
                 other_files.append(file_path)
 
+    destination_folder = os.path.join(destination_root, 'PARSED')
     if not os.path.exists(destination_folder):
         os.makedirs(destination_folder)
 
@@ -37,13 +38,29 @@ def parse_files(folder_path, destination_folder):
 
     print("Files moved successfully.")
 
+    if nc_files:
+        print("NC Files:")
+        for file in nc_files:
+            print(file)
+
+    if mpf_files:
+        print("\nMPF Files:")
+        for file in mpf_files:
+            print(file)
+
+    if other_files:
+        print("\nOther Files:")
+        for file in other_files:
+            print(file)
 
     return nc_files, mpf_files, other_files
 
 
 # Provide the folder path where the files are located
-folder_path = 'C:/Users/User/Desktop/sudo/ParsingFiles'
-# Provide the destination folder path. Leave empty to create the new directory
-destination_folder = ''  
+folder_path = 'C:/Users/User/...'
 
-parse_files(folder_path, destination_folder)
+# Provide the destination root directory
+destination_root = 'C:/Users/User/'
+
+parse_files(folder_path, destination_root)
+
