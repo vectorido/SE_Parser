@@ -12,12 +12,13 @@ def parse_files(folder_path, destination_root):
 
         if os.path.isfile(file_path):
             file_extension = os.path.splitext(file_name)[1]
+            file_start_letter = os.path.splitext(file_name)[0][0]
 
-            if file_extension == '.nc':
+            if file_extension.lower() == '.nc':
                 nc_files.append(file_path)
-            elif file_extension == '.mpf':
+            elif file_extension.lower() == '.mpf':
                 mpf_files.append(file_path)
-            elif file_extension == '':
+            elif file_extension == '' and (file_start_letter == 'O' or file_start_letter == 'О'):
                 other_files.append(file_path)
 
     destination_folder = os.path.join(destination_root, 'PARSED')
@@ -57,10 +58,9 @@ def parse_files(folder_path, destination_root):
 
 
 # Provide the folder path where the files are located
-folder_path = 'C:/Users/User/...'
+folder_path = 'C:/Users/User/Desktop/sudo/VOSST'
 
 # Provide the destination root directory
-destination_root = 'C:/Users/User/'
+destination_root = 'C:/Users/User/Desktop/sudo/'
 
 parse_files(folder_path, destination_root)
-
